@@ -5,7 +5,7 @@ import toast, { Toaster } from "react-hot-toast";
 import "react-toastify/dist/ReactToastify.css";
 import Rules from "./Rules";
 
-const GamePlay = ({toggle}) => {
+const GamePlay = ({ toggle }) => {
   const arrnum = [1, 2, 3, 4, 5, 6];
   const [selectedNumber, setSelectedNumber] = useState();
   const [Score, setScore] = useState(0);
@@ -40,23 +40,23 @@ const GamePlay = ({toggle}) => {
   return (
     <>
       <Toaster position="top-center" reverseOrder={false} />
-      <div className="mx-2 my-2 flex justify-between">
+      <div className="mx-2 my-2 flex justify-between ">
         {/* total score */}
 
-        <div className="flex max-w-[135px]  flex-col items-center">
-          <h1 className="text-8xl font-semibold">{Score}</h1>
+        <div className="flex max-w-[135px]  flex-col items-center max-md:w-[50px] ">
+          <h1 className="text-8xl font-semibold max-md:text-6xl">{Score}</h1>
           <p className="text-lg font-medium">Total Score</p>
         </div>
 
         {/* numselector */}
-        <div className="mr-10 mt-5 ">
-          <div className="mt-4 flex w-[500px] justify-end gap-2 ">
+        <div className="mr-10 mt-5  ">
+          <div className="mt-4 flex w-[500px]  justify-end  gap-2 max-md:w-[250px] ">
             {arrnum.map((value, i) => {
               return (
                 <Box
                   key={i}
-                  className="grid h-[72px] w-[72px] cursor-pointer place-items-center border-2 border-black
-                  text-3xl font-medium "
+                  className="grid h-[72px] w-[72px] cursor-pointer place-items-center border-2 border-black text-3xl font-medium
+                  max-md:h-[50px] max-md:w-[50px] "
                   onClick={() => setSelectedNumber(value)}
                   id={i}
                   isSelected={value === selectedNumber}
@@ -74,30 +74,32 @@ const GamePlay = ({toggle}) => {
 
       {/* roll dice */}
       <main className="flex flex-col items-center ">
-        <div className="max-w-[250px]">
-          <div onClick={rollDice}>
+        <div className="max-w-[250px] max-md:flex max-md:flex-col max-md:items-center">
+          <div onClick={rollDice} className="max-md:mt-10 max-md:w-[100px]">
             <img src={`/images/dice_${currentDice}.png`} alt="" />
           </div>
           <h3 className="text-2xl font-medium">Click on Dice to roll</h3>
           <button
-            className="my-3 w-full rounded-md bg-black px-[18px]  py-[10px] text-xl text-white"
+            className="my-3 w-full rounded-md bg-black px-[18px] py-[10px] text-xl  text-white max-md:m-6 max-md:w-3/4"
             onClick={resetScore}
           >
             Reset Btn
           </button>
           <button
-            className="w-full rounded-md bg-black px-[18px] py-[10px]  text-xl text-white"
+            className="w-full  rounded-md bg-black px-[18px] py-[10px] text-xl  text-white max-md:w-3/4"
             onClick={() => setshowRules((prev) => !prev)}
           >
             {showRules ? "Hide" : "Show"} Rules
           </button>
           {showRules && <Rules />}
           <Toaster position="top-center" reverseOrder={false} />
-          <button className="w-full rounded-md bg-black px-[18px] py-[10px] mt-4 text-xl text-white"
-          onClick={toggle}
-          >Exit</button>
+          <button
+            className="mt-4  w-full rounded-md bg-black px-[18px] py-[10px] text-xl text-white max-md:m-6 max-md:w-3/4"
+            onClick={toggle}
+          >
+            Exit
+          </button>
         </div>
-        
       </main>
     </>
   );
